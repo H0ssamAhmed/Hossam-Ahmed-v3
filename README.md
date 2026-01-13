@@ -23,12 +23,14 @@ Modern, responsive portfolio built with Next.js 14, featuring project showcases,
 ### Installation
 
 1. Clone the repository:
+
 ```bash
 git clone <your-repo-url>
 cd portfolio-nextjs
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 # or
@@ -36,6 +38,7 @@ yarn install
 ```
 
 3. Run the development server:
+
 ```bash
 npm run dev
 # or
@@ -118,6 +121,7 @@ vercel
 ### Other Platforms
 
 This Next.js application can be deployed to:
+
 - Netlify
 - AWS Amplify
 - Google Cloud Platform
@@ -203,4 +207,3 @@ Contributions, issues, and feature requests are welcome!
 ---
 
 **Built with ❤️ using Next.js**
-
