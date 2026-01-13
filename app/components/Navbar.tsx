@@ -1,5 +1,4 @@
 'use client'
-
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useTheme } from './ThemeProvider'
@@ -9,16 +8,27 @@ import { cn } from '@/lib/utils'
 
 export default function Navbar() {
   const { theme, toggleTheme } = useTheme()
-  const [isScrolled, setIsScrolled] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(true)
+  const [previousScrollY, setPreviousScrollY] = useState(0)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 500)
+      if (previousScrollY > window.scrollY || window.scrollY == 0) {
+        setIsScrolled(true)
+      } else {
+        setIsScrolled(false)
+      }
+      setIsMobileMenuOpen(false)
+      setPreviousScrollY(window.scrollY)
+      console.log(previousScrollY);
+      console.log(window.scrollY);
+
+      // setIsScrolled(previousScrollY > window.scrollY)
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [previousScrollY])
 
   const navLinks = [
     { name: 'Home', href: '/#' },
@@ -30,8 +40,9 @@ export default function Navbar() {
 
   return (
     <nav
-      className={cn("fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled ? 'bg-[var(--bg-primary)] shadow-md' : 'bg-transparent'
+      className={cn("fixed -top-20 left-0 right-0 z-50 transition-all duration-500",
+        isScrolled ? 'bg-[var(--bg-primary)]  shadow-md  top-0' : 'bg-transparent   '
+        // isScrolled ? 'bg-[var(--bg-primary)] shadow-md' : 'bg-transparent'
       )}
     >
       <div className="container mx-auto px-6">

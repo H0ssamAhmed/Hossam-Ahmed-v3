@@ -1,3 +1,7 @@
+export interface Skill {
+  name: string;
+  icon: string;
+}
 export interface Project {
   id: number;
   title: string;
