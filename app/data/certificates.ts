@@ -1,0 +1,58 @@
+import { Certificate } from '../types'
+
+export const certificates: Certificate[] = [
+  {
+    id: 1,
+    title: 'AWS Certified Solutions Architect',
+    issuer: 'Amazon Web Services',
+    date: 'December 2024',
+    credentialId: 'AWS-ASA-12345',
+    icon: '☁️',
+    color: '#FF9900',
+  },
+  {
+    id: 2,
+    title: 'Google Professional Cloud Developer',
+    issuer: 'Google Cloud Platform',
+    date: 'October 2024',
+    credentialId: 'GCP-PCD-67890',
+    icon: '☁️',
+    color: '#4285F4',
+  },
+  {
+    id: 3,
+    title: 'Meta Front-End Developer Professional',
+    issuer: 'Coursera',
+    date: 'August 2024',
+    credentialId: 'META-FE-54321',
+    icon: '💻',
+    color: '#0668E1',
+  },
+  {
+    id: 4,
+    title: 'React Native Expert Certification',
+    issuer: 'Meta',
+    date: 'June 2024',
+    credentialId: 'RN-EXP-98765',
+    icon: '📱',
+    color: '#61DAFB',
+  },
+  {
+    id: 5,
+    title: 'Certified Kubernetes Administrator',
+    issuer: 'CNCF',
+    date: 'April 2024',
+    credentialId: 'CKA-11223',
+    icon: '☸️',
+    color: '#326CE5',
+  },
+  {
+    id: 6,
+    title: 'MongoDB Associate Developer',
+    issuer: 'MongoDB University',
+    date: 'February 2024',
+    credentialId: 'MDB-ADV-44556',
+    icon: '🍃',
+    color: '#47A248',
+  },
+]
