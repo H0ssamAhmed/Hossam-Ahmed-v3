@@ -1,10 +1,15 @@
-import React from 'react'
+'use client'
+import React, { useRef } from 'react'
 import { motion } from "motion/react"
 import ProjectCard from './ProjectCard'
 import { projects } from '@/app/data/projects'
 import Link from 'next/link'
+import { Project } from '@/app/types'
 
-const FeaturedProject = () => {
+const FeaturedProject = ({ projects }: { projects: Project[] }) => {
+    console.log(projects);
+
+
     return (
         <section id="projects" className="section-padding bg-[var(--bg-secondary)]">
             <div className="container mx-auto px-6">
@@ -14,7 +19,7 @@ const FeaturedProject = () => {
                     transition={{ duration: 0.6 }}
                     viewport={{ once: true }}
                 >
-                    <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
+                    <h2 className="text-4xl md:text-5xl font-bold w-fit mx-auto mb-4 selection:scale-150">
                         Featured Projects
                     </h2>
                     <p className="text-center text-[var(--text-secondary)] mb-12 text-lg">
@@ -22,9 +27,9 @@ const FeaturedProject = () => {
                     </p>
 
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-                        {projects.slice(0, 3).map((project, index) => (
+                        {projects?.map((project, index) => (
                             <ProjectCard
-                                key={project.id}
+                                key={project._id}
                                 project={project}
                                 delay={index * 0.1}
                             />

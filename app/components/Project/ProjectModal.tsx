@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react'
 import { motion, AnimatePresence } from "motion/react"
 import { Project } from '@/app/types'
+import Image from 'next/image'
 
 
 interface ProjectModalProps {
@@ -91,12 +92,12 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
 
                   {/* Tags */}
                   <div className="flex flex-wrap gap-2 mb-8">
-                    {project.tags.map((tag, index) => (
+                    {project.skills.map((skill, index) => (
                       <span
                         key={index}
                         className="px-3 py-1 bg-[var(--bg-secondary)] text-[var(--text-primary)] text-sm rounded-full border border-[var(--border)]"
                       >
-                        {tag}
+                        {skill.name}
                       </span>
                     ))}
                   </div>
@@ -109,9 +110,9 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                         {project.gallery.map((item, index) => (
                           <div
                             key={index}
-                            className="aspect-square bg-[var(--bg-secondary)] rounded-lg flex items-center justify-center text-6xl border border-[var(--border)] hover:border-[var(--accent)] transition-colors"
+                            className="relative aspect-square bg-[var(--bg-secondary)] rounded-lg flex items-center justify-center text-6xl border border-[var(--border)] hover:border-[var(--accent)] transition-colors"
                           >
-                            {item}
+                            <Image alt={item} src={item} fill className="object-cover" />
                           </div>
                         ))}
                       </div>
@@ -130,7 +131,7 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                   <div className="mb-8">
                     <h3 className="text-2xl font-bold mb-3">Objective</h3>
                     <p className="text-[var(--text-secondary)] leading-relaxed">
-                      {project.objective}
+                      {project.description}
                     </p>
                   </div>
 
@@ -159,9 +160,9 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                       {project.skills.map((skill, index) => (
                         <span
                           key={index}
-                          className="px-4 py-2 bg-[var(--accent)] bg-opacity-10 text-[var(--accent)] rounded-lg font-medium"
+                          className="px-4 py-2 bg-[var(--accent)] bg-opacity-10 text-white rounded-lg font-medium"
                         >
-                          {skill}
+                          {skill.name}
                         </span>
                       ))}
                     </div>

@@ -1,19 +1,22 @@
 export interface Skill {
+  _id: string;
   name: string;
   icon: string;
 }
+export interface Result {
+  value: string;
+  label: string;
+}
 export interface Project {
-  id: number;
+  _id: string;
   title: string;
   description: string;
   icon: string;
-  tags: string[];
+  skills: Skill[];
   overview: string;
-  objective: string;
   features: string[];
-  skills: string[];
   gallery: string[];
-  results: { value: string; label: string }[];
+  results: Result[];
 }
 
 export interface Experience {

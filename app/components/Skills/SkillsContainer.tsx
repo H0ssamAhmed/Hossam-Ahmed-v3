@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import { motion } from "motion/react"
 import { Skill } from '@/app/types'
@@ -48,16 +49,14 @@ const SkillsContainer = () => {
             {/* Marquee Container */}
             <div className="marquee-container py-8">
                 <div className="flex animate-marquee">
-                    {duplicatedSkills.map((skill) => <SkillElement key={skill.icon} skill={skill} />)}
-
-
+                    {duplicatedSkills.map((skill, index) => <SkillElement key={skill.icon + index} skill={skill} />)}
                 </div>
             </div>
 
             {/* Second row - reverse direction */}
             <div className="marquee-container py-8">
-                <div className="flex animate-marquee" style={{ animationDirection: 'reverse', animationDuration: '35s' }}>
-                    {[...duplicatedSkills].reverse().map((skill) => <SkillElement key={skill.icon} skill={skill} />)}
+                <div className="flex animate-marquee" style={{ animationDirection: 'reverse' }}>
+                    {[...duplicatedSkills].reverse().map((skill, index) => <SkillElement key={skill.icon + index} skill={skill} />)}
                 </div>
             </div>
         </section>

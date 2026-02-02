@@ -5,10 +5,18 @@ Your Next.js 14 portfolio has been successfully created according to the SDLC do
 ## ✅ What's Been Built
 
 ### 📁 Complete File Structure
+
 ```
 portfolio-nextjs/
 ├── app/
 │   ├── components/
+│   │   ├──About/
+│   │   ├──Cericated/
+│   │   ├──Contact/
+│   │   ├──Education/
+│   │   ├──Hero/
+│   │   ├──Project/
+│   │   ├──Skills/
 │   │   ├── Navbar.js              ✓ Responsive navigation with theme toggle
 │   │   ├── Footer.js              ✓ Footer with social links
 │   │   ├── ThemeProvider.js       ✓ Dark/light theme with localStorage
@@ -43,18 +51,21 @@ portfolio-nextjs/
 ### ✅ All Requirements from Documentation
 
 #### FR-1: Navigation System
+
 - ✓ Sticky navigation bar with logo
 - ✓ Dark/light theme toggle with persistence
 - ✓ Smooth scroll to sections
 - ✓ Mobile responsive hamburger menu
 
 #### FR-2: Home Page
+
 - ✓ Hero section with headline and CTA buttons
 - ✓ About section with skills grid (12 skills)
 - ✓ Featured projects (3 cards)
 - ✓ Contact section with social links
 
 #### FR-3: Projects System
+
 - ✓ Projects listing page (6 projects)
 - ✓ Project cards with hover effects
 - ✓ Project modal with detailed information
@@ -64,6 +75,7 @@ portfolio-nextjs/
 - ✓ Results/metrics display
 
 #### FR-4: Articles/Blog System
+
 - ✓ Articles listing page (6 articles)
 - ✓ Individual article pages with dynamic routing
 - ✓ Article metadata (date, category, read time)
@@ -71,6 +83,7 @@ portfolio-nextjs/
 - ✓ Article categories
 
 #### FR-5: Theme System
+
 - ✓ Light and dark mode support
 - ✓ Theme persistence using localStorage
 - ✓ Smooth transitions between themes
@@ -79,12 +92,14 @@ portfolio-nextjs/
 ### 🎯 Non-Functional Requirements
 
 #### Performance
+
 - ✓ Optimized with Next.js 14 App Router
 - ✓ Static generation for articles
 - ✓ Framer Motion for smooth animations
 - ✓ Lazy loading ready
 
 #### Accessibility
+
 - ✓ Semantic HTML structure
 - ✓ Keyboard navigation support
 - ✓ ARIA labels on interactive elements
@@ -92,6 +107,7 @@ portfolio-nextjs/
 - ✓ Escape key closes modals
 
 #### SEO
+
 - ✓ Meta tags in layout
 - ✓ Dynamic metadata for articles
 - ✓ Semantic HTML
@@ -120,12 +136,14 @@ portfolio-nextjs/
 ## 🚀 Next Steps
 
 ### 1. Install Dependencies
+
 ```bash
 cd portfolio-nextjs
 npm install
 ```
 
 ### 2. Run Development Server
+
 ```bash
 npm run dev
 ```
@@ -135,28 +153,33 @@ Visit: **http://localhost:3000**
 ### 3. Customize Your Portfolio
 
 **Priority 1 - Personal Info:**
+
 - [ ] Update your name in `app/page.js` (line 32)
 - [ ] Update bio and description (lines 35-36, 52-55)
 - [ ] Update social links in `app/components/Footer.js` and `app/page.js`
 - [ ] Update contact email
 
 **Priority 2 - Content:**
+
 - [ ] Add/edit your projects in `app/data/projects.js`
 - [ ] Add/edit your articles in `app/data/articles.js`
 - [ ] Update skills list in `app/page.js` (line 11)
 
 **Priority 3 - Styling (Optional):**
+
 - [ ] Customize colors in `app/globals.css` and `tailwind.config.js`
 - [ ] Add your own images to `public/images/`
 - [ ] Update favicon
 
 ### 4. Build for Production
+
 ```bash
 npm run build
 npm start
 ```
 
 ### 5. Deploy to Vercel
+
 ```bash
 # Push to GitHub first
 git init
@@ -178,16 +201,19 @@ vercel
 ## 🎨 Design System
 
 ### Colors
+
 - **Light Theme:** Warm, professional palette
 - **Dark Theme:** Modern, eye-friendly colors
 - **Accent:** #cc6b49 (light) / #e89b7e (dark)
 
 ### Typography
+
 - **Headings:** Crimson Pro (serif)
 - **Body:** Inter (sans-serif)
 - **Google Fonts** loaded in globals.css
 
 ### Spacing
+
 - Consistent 4px base unit
 - Responsive padding and margins
 - Mobile-first approach
@@ -240,4 +266,3 @@ vercel
 Your portfolio is ready to showcase your work. Just install dependencies, customize the content, and deploy!
 
 **Built with ❤️ following professional SDLC practices**
-

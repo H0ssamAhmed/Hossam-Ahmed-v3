@@ -24,24 +24,24 @@ export default function ProjectCard({ project, delay = 0 }: ProjectCardProps) {
       >
         <div className="bg-[var(--bg-secondary)] rounded-lg p-6 hover:shadow-xl transition-all duration-300 cursor-pointer border border-[var(--border)] hover:border-[var(--accent)] group">
           <div className="text-4xl mb-4">{project.icon}</div>
-          <h3 className="text-2xl font-bold mb-3 group-hover:text-[var(--accent)] transition-colors">
+          <h3 className="text-2xl font-bold mb-3 group-hover:text-[var(--accent)] transition-colors ">
             {project.title}
           </h3>
           <p className="text-[var(--text-secondary)] mb-4 line-clamp-2">
             {project.description}
           </p>
           <div className="flex flex-wrap gap-2 mb-4">
-            {project.tags.slice(0, 3).map((tag, index) => (
+            {project.skills.slice(0, 3).map((skill, index) => (
               <span
                 key={index}
                 className="px-3 py-1 bg-[var(--bg-primary)] text-[var(--text-secondary)] text-sm rounded-full border border-[var(--border)]"
               >
-                {tag}
+                {skill.name}
               </span>
             ))}
-            {project.tags.length > 3 && (
+            {project.skills.length > 3 && (
               <span className="px-3 py-1 text-[var(--text-secondary)] text-sm">
-                +{project.tags.length - 3} more
+                +{project.skills.length - 3} more
               </span>
             )}
           </div>

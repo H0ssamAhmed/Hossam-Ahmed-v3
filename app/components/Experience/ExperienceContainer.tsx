@@ -1,7 +1,7 @@
+'use client'
 import React from 'react'
 import { motion } from "motion/react"
 import { experiences } from '@/app/data/experience'
-import { Experience } from '@/app/types'
 import ExperienceCard from './ExperienceCard'
 
 

@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import ParticleBackground from '../ParticleBackground'
 import { motion } from "motion/react"

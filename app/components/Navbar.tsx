@@ -21,10 +21,6 @@ export default function Navbar() {
       }
       setIsMobileMenuOpen(false)
       setPreviousScrollY(window.scrollY)
-      console.log(previousScrollY);
-      console.log(window.scrollY);
-
-      // setIsScrolled(previousScrollY > window.scrollY)
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
@@ -41,8 +37,7 @@ export default function Navbar() {
   return (
     <nav
       className={cn("fixed -top-20 left-0 right-0 z-50 transition-all duration-500",
-        isScrolled ? 'bg-[var(--bg-primary)]  shadow-md  top-0' : 'bg-transparent   '
-        // isScrolled ? 'bg-[var(--bg-primary)] shadow-md' : 'bg-transparent'
+        isScrolled ? 'bg-[var(--bg-primary)]  shadow-md  top-0' : 'bg-transparent'
       )}
     >
       <div className="container mx-auto px-6">

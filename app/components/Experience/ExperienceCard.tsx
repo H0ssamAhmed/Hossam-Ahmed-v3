@@ -1,6 +1,7 @@
 import React from 'react'
 import { motion } from "motion/react"
 import { Experience } from '@/app/types'
+import Badge from '../Badge'
 
 const ExperienceCard = ({ exp, index }: { exp: Experience, index: number }) => {
     return (
@@ -17,9 +18,7 @@ const ExperienceCard = ({ exp, index }: { exp: Experience, index: number }) => {
 
             <div className={`bg-[var(--bg-secondary)] p-6 rounded-xl border border-[var(--border)] hover:border-[var(--accent)] transition-all hover:shadow-lg ${index % 2 === 0 ? 'md:mr-8' : 'md:ml-8'
                 }`}>
-                <span className="inline-block px-3 py-1 bg-[var(--accent)] bg-opacity-10 text-[var(--accent)] rounded-full text-sm font-medium mb-3">
-                    {exp.period}
-                </span>
+                <Badge text={exp.period} />
                 <h3 className="text-xl font-bold mb-1">{exp.title}</h3>
                 <p className="text-[var(--accent)] font-medium mb-2">{exp.company}</p>
                 <p className="text-[var(--text-secondary)] text-sm mb-4">{exp.location}</p>
