@@ -19,6 +19,10 @@ export interface Project {
   results: Result[];
 }
 
+export interface ExperienceSkill {
+  _id: string;
+  name: string;
+}
 export interface Experience {
   id: number;
   title: string;
@@ -26,7 +30,7 @@ export interface Experience {
   period: string;
   location: string;
   description: string;
-  technologies: string[];
+  skills: ExperienceSkill[];
 }
 
 export interface Education {

@@ -11,14 +11,14 @@ import CertificatesContainer from './components/Certificates/CertificatesContain
 
 
 async function getProjects() {
-    const res = await fetch(`${process.env.BASE_URL}/projects`, {
+    const res = await fetch(`${process.env.BASE_URL}/home`, {
         cache: 'no-store', // SSR
     })
     return res.json()
 }
 export default async function Home() {
-    const projects = await getProjects()
-    console.log(projects.projects);
+    const home = await getProjects()
+    console.log(home.data.projects);
 
     return (
         <main>
@@ -28,19 +28,19 @@ export default async function Home() {
             <About />
 
             {/* Skills Section - Endless Marquee */}
-            <SkillsContainer />
+            <SkillsContainer skills={home.data.skills} />
 
             {/* Experience Section */}
-            <ExperienceContainer />
+            <ExperienceContainer experiences={home.data.experiences} />
 
             {/* Education Section */}
             <EducationContainer />
 
             {/* Certificates Section */}
-            <CertificatesContainer />
+            <CertificatesContainer certificates={home.data.certificates} />
 
             {/* Featured Projects Section */}
-            <FeaturedProject projects={projects.projects} />
+            <FeaturedProject projects={home.data.projects} />
 
             {/* Contact Section */}
             <Contact />

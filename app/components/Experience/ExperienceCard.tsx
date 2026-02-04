@@ -25,12 +25,12 @@ const ExperienceCard = ({ exp, index }: { exp: Experience, index: number }) => {
                 <p className="text-[var(--text-secondary)] mb-4 text-left">{exp.description}</p>
 
                 <div className="flex flex-wrap gap-2 justify-start">
-                    {exp.technologies.map((tech) => (
+                    {exp.skills.map((skill) => (
                         <span
-                            key={tech}
+                            key={skill._id}
                             className="px-3 py-1 bg-[var(--bg-primary)] rounded-full text-xs font-medium"
                         >
-                            {tech}
+                            {skill.name}
                         </span>
                     ))}
                 </div>

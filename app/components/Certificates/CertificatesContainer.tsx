@@ -3,8 +3,9 @@ import React from 'react'
 import { motion } from "motion/react"
 import { certificates } from '@/app/data/certificates'
 import CertificateCard from './CertificateCard'
+import { Certificate } from '@/app/types'
 
-const CertificatesContainer = () => {
+const CertificatesContainer = ({ certificates }: { certificates: Certificate[] }) => {
     return (
         <section id="certificates" className="section-padding bg-[var(--bg-primary)]">
             <div className="container mx-auto px-6">

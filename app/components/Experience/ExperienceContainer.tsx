@@ -3,9 +3,10 @@ import React from 'react'
 import { motion } from "motion/react"
 import { experiences } from '@/app/data/experience'
 import ExperienceCard from './ExperienceCard'
+import { Experience } from '@/app/types'
 
 
-const ExperienceContainer = () => {
+const ExperienceContainer = ({ experiences }: { experiences: Experience[] }) => {
     return (
         <section id="experience" className="section-padding bg-[var(--bg-primary)]">
             <div className="container mx-auto px-6">

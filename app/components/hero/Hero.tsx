@@ -3,6 +3,7 @@ import React from 'react'
 import ParticleBackground from '../ParticleBackground'
 import { motion } from "motion/react"
 import Link from 'next/link'
+import WordAnimation from './WordAnimation'
 const Hero = () => {
     return (
         <section id="#" className="min-h-screen flex items-center justify-center bg-gradient-to-b from-[var(--bg-primary)] to-[var(--bg-secondary)] relative overflow-hidden">
@@ -20,8 +21,9 @@ const Hero = () => {
                         <span className="text-[var(--accent)]">Hossam</span>
                     </h1>
                     <p className="text-xl md:text-2xl text-[var(--text-secondary)] mb-8 max-w-3xl mx-auto">
-                        Full-Stack Developer crafting modern web experiences with passion for clean code and beautiful design
+                        Front-End Developer with ( <WordAnimation /> ) skills, crafting modern web experiences with passion for clean code and beautiful design
                     </p>
+
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Link
                             href="/projects"

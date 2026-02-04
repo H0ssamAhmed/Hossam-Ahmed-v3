@@ -7,9 +7,7 @@ import { Project } from '../types'
 
 
 async function getProjects() {
-  const res = await fetch(`${process.env.BASE_URL}/projects`, {
-    cache: 'no-store', // SSR
-  })
+  const res = await fetch(`${process.env.BASE_URL}/projects/all`)
   return res.json()
 }
 export default async function ProjectsPage() {

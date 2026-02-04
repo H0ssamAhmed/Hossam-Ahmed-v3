@@ -5,25 +5,25 @@ import { Skill } from '@/app/types'
 import SkillElement from './SkillElement'
 
 
-const SkillsContainer = () => {
-    const skills: Skill[] = [
-        { name: 'React', icon: '⚛️' },
-        { name: 'Next.js', icon: '▲' },
-        { name: 'TypeScript', icon: '📘' },
-        { name: 'Node.js', icon: '💚' },
-        { name: 'TailwindCSS', icon: '🎨' },
-        { name: 'PostgreSQL', icon: '🐘' },
-        { name: 'MongoDB', icon: '🍃' },
-        { name: 'AWS', icon: '☁️' },
-        { name: 'Git', icon: '📦' },
-        { name: 'REST APIs', icon: '🔗' },
-        { name: 'GraphQL', icon: '◈' },
-        { name: 'Docker', icon: '🐳' },
-        { name: 'Python', icon: '🐍' },
-        { name: 'JavaScript', icon: '💛' },
-        { name: 'CSS', icon: '🎯' },
-        { name: 'HTML', icon: '📄' }
-    ]
+const SkillsContainer = ({ skills }: { skills: Skill[] }) => {
+    // const skills: Skill[] = [
+    //     { name: 'React', icon: '⚛️' },
+    //     { name: 'Next.js', icon: '▲' },
+    //     { name: 'TypeScript', icon: '📘' },
+    //     { name: 'Node.js', icon: '💚' },
+    //     { name: 'TailwindCSS', icon: '🎨' },
+    //     { name: 'PostgreSQL', icon: '🐘' },
+    //     { name: 'MongoDB', icon: '🍃' },
+    //     { name: 'AWS', icon: '☁️' },
+    //     { name: 'Git', icon: '📦' },
+    //     { name: 'REST APIs', icon: '🔗' },
+    //     { name: 'GraphQL', icon: '◈' },
+    //     { name: 'Docker', icon: '🐳' },
+    //     { name: 'Python', icon: '🐍' },
+    //     { name: 'JavaScript', icon: '💛' },
+    //     { name: 'CSS', icon: '🎯' },
+    //     { name: 'HTML', icon: '📄' }
+    // ]
 
     // Duplicate skills for seamless marquee loop
     const duplicatedSkills = [...skills, ...skills]
