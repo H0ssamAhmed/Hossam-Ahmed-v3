@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from "motion/react"
 import { Project } from '@/app/types'
 import Image from 'next/image'
@@ -12,6 +12,25 @@ interface ProjectModalProps {
 }
 
 export default function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
+  const [carouselOpen, setCarouselOpen] = useState(false)
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+
+  const gallery = project.gallery ?? []
+  const currentImage = gallery[currentImageIndex]
+
+  const openImage = (index: number) => {
+    setCurrentImageIndex(index)
+    setCarouselOpen(true)
+  }
+
+  const goToPrev = () => {
+    setCurrentImageIndex((prev) => (prev === 0 ? gallery.length - 1 : prev - 1))
+  }
+
+  const goToNext = () => {
+    setCurrentImageIndex((prev) => (prev === gallery.length - 1 ? 0 : prev + 1))
+  }
+
   // Disable body scroll when modal is open
   useEffect(() => {
     if (isOpen) {
@@ -24,16 +43,30 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
     }
   }, [isOpen])
 
-  // Close on Escape key
+  // Close on Escape key (carousel first, then modal)
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose()
+      if (e.key === 'Escape') {
+        if (carouselOpen) setCarouselOpen(false)
+        else onClose()
+      }
     }
     if (isOpen) {
       window.addEventListener('keydown', handleEscape)
     }
     return () => window.removeEventListener('keydown', handleEscape)
-  }, [isOpen, onClose])
+  }, [isOpen, onClose, carouselOpen])
+
+  // Carousel keyboard navigation
+  useEffect(() => {
+    if (!carouselOpen) return
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') setCurrentImageIndex((prev) => (prev === 0 ? gallery.length - 1 : prev - 1))
+      if (e.key === 'ArrowRight') setCurrentImageIndex((prev) => (prev === gallery.length - 1 ? 0 : prev + 1))
+    }
+    window.addEventListener('keydown', handleKey)
+    return () => window.removeEventListener('keydown', handleKey)
+  }, [carouselOpen, gallery.length])
 
   return (
     <AnimatePresence>
@@ -107,12 +140,13 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                     <div className="mb-8">
                       <h3 className="text-2xl font-bold mb-4">Gallery</h3>
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        {project.gallery.map((item, index) => (
+                        {project.gallery.map((src, index) => (
                           <div
                             key={index}
-                            className="relative aspect-square bg-[var(--bg-secondary)] rounded-lg flex items-center justify-center text-6xl border border-[var(--border)] hover:border-[var(--accent)] transition-colors"
+                            onClick={() => openImage(index)}
+                            className="relative aspect-square bg-[var(--bg-secondary)] rounded-lg flex items-center justify-center text-6xl border border-[var(--border)] hover:border-[var(--accent)] transition-colors cursor-pointer overflow-hidden"
                           >
-                            <Image alt={item} src={item} fill className="object-cover" />
+                            <Image alt={src} src={src} fill className="object-cover" />
                           </div>
                         ))}
                       </div>
@@ -193,6 +227,85 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
               </motion.div>
             </div>
           </div>
+
+          {/* Image Carousel Popup */}
+          <AnimatePresence>
+            {carouselOpen && gallery.length > 0 && currentImage && (
+              <>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  onClick={() => setCarouselOpen(false)}
+                  className="fixed inset-0 bg-black/90 z-[60] backdrop-blur-sm"
+                />
+                <div className="fixed inset-0 z-[61] flex items-center justify-center p-4">
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    className="relative w-full max-w-4xl max-h-[90vh] flex items-center"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {/* Close button */}
+                    <button
+                      onClick={() => setCarouselOpen(false)}
+                      className="absolute -top-12 right-0 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors text-white z-10"
+                      aria-label="Close carousel"
+                    >
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
+
+                    {/* Prev arrow */}
+                    <button
+                      onClick={goToPrev}
+                      className="absolute left-2 md:left-0 md:-translate-x-16 p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors text-white z-10"
+                      aria-label="Previous image"
+                    >
+                      <svg className="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                      </svg>
+                    </button>
+
+                    {/* Image */}
+                    <div className="relative w-full aspect-video max-h-[80vh] mx-12 md:mx-4">
+                      <AnimatePresence mode="wait">
+                        <motion.div
+                          key={currentImageIndex}
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="absolute inset-0"
+                        >
+                          <Image
+                            alt={`Gallery image ${currentImageIndex + 1}`}
+                            src={currentImage}
+                            fill
+                            className="object-contain rounded-lg"
+                            sizes="(max-width: 1024px) 100vw, 896px"
+                          />
+                        </motion.div>
+                      </AnimatePresence>
+                    </div>
+
+                    {/* Next arrow */}
+                    <button
+                      onClick={goToNext}
+                      className="absolute right-2 md:right-0 md:translate-x-16 p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors text-white z-10"
+                      aria-label="Next image"
+                    >
+                      <svg className="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
+                  </motion.div>
+                </div>
+              </>
+            )}
+          </AnimatePresence>
         </>
       )}
     </AnimatePresence>
